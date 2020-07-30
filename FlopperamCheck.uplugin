@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "FlopperamCheck",
+	"Description": "Just gets Flopperams channel",
+	"Category": "Flopperam",
+	"CreatedBy": "BEAST",
+	"CreatedByURL": "https://www.youtube.com/channel/UCO77KLKwplncMHLo6gLpIHw",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "FlopperamCheck",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
