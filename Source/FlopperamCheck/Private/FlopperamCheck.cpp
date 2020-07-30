@@ -57,13 +57,11 @@ void FFlopperamCheckModule::ShutdownModule()
 
 void FFlopperamCheckModule::PluginButtonClicked()
 {
-	// Put your "OnButtonClicked" stuff here
 	FText DialogText = FText(LOCTEXT("Launching Flopperams Channel...",
 		"Would you like to Launch Flopperams Channel?"
 	));
 
-
-	UKismetSystemLibrary::LaunchURL("https://www.youtube.com/channel/UCO77KLKwplncMHLo6gLpIHw");
+	UKismetSystemLibrary::LaunchURL("https://www.youtube.com/channel/UCO77KLKwplncMHLo6gLpIHw/videos");
 }
 
 void FFlopperamCheckModule::AddMenuExtension(FMenuBuilder& Builder)
