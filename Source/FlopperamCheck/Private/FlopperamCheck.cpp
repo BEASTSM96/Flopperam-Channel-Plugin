@@ -9,6 +9,37 @@
 
 #include "LevelEditor.h"
 
+/*
+#include "UnrealEd/Public/AssetSelection.h"
+#include "Slate/Public/Framework/Notifications/NotificationManager.h"
+#include "Slate/Public/Widgets/Notifications/SNotificationList.h"
+#include "Developer/Settings/Public/ISettingsModule.h"
+#include "Developer/Settings/Public/ISettingsSection.h"
+#include "UnrealEd/Public/Editor.h"
+#include "Slate/SceneViewport.h"
+#include "LevelEditor/Public/LevelEditor.h"
+#include "Sockets/Public/SocketSubsystem.h"
+#include "Sockets/Public/Sockets.h"
+#include "Sockets/Public/IPAddress.h"
+#include "UnrealEd/Public/FileHelpers.h"
+#include "Sequencer/Public/ISequencerModule.h"
+#include "Sequencer/Public/SequencerChannelInterface.h"
+#include "MovieSceneTools/Public/ClipboardTypes.h"
+#include "Engine/Public/DebugRenderSceneProxy.h"
+#include "Engine/Classes/Debug/DebugDrawService.h"
+#include "Settings/ProjectPackagingSettings.h"
+#include "UnrealEdGlobals.h"
+#include "UnrealEd/Public/LevelEditorViewport.h"
+#include "ActorFactories/ActorFactory.h"
+#include "Engine/Canvas.h"
+#include "Editor/UnrealEdEngine.h"
+#include "Slate/Public/Framework/MultiBox/MultiBoxBuilder.h"
+#include "Misc/MessageDialog.h"
+#include "HAL/FileManager.h"
+*/
+
+#include "ISettingsModule.h"
+#include "ISettingsContainer.h"
 static const FName FlopperamCheckTabName("FlopperamCheck");
 
 #define LOCTEXT_NAMESPACE "FFlopperamCheckModule"
@@ -30,14 +61,14 @@ void FFlopperamCheckModule::StartupModule()
 		FCanExecuteAction());
 		
 	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
-	
+
 	{
 		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
-		MenuExtender->AddMenuExtension("WindowLayout", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FFlopperamCheckModule::AddMenuExtension));
+		MenuExtender->AddMenuExtension("FileProject", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FFlopperamCheckModule::AddMenuExtension));
 
 		LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
 	}
-	
+
 	{
 		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
 		ToolbarExtender->AddToolBarExtension("Game", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FFlopperamCheckModule::AddToolbarExtension));
@@ -61,7 +92,11 @@ void FFlopperamCheckModule::PluginButtonClicked()
 		"Would you like to Launch Flopperams Channel?"
 	));
 
-	UKismetSystemLibrary::LaunchURL("https://www.youtube.com/channel/UCO77KLKwplncMHLo6gLpIHw/videos");
+	if (FMessageDialog::Open(EAppMsgType::OkCancel, DialogText) == EAppReturnType::Ok)
+	{
+		UKismetSystemLibrary::LaunchURL("https://www.youtube.com/channel/UCO77KLKwplncMHLo6gLpIHw/videos");
+	}
+
 }
 
 void FFlopperamCheckModule::AddMenuExtension(FMenuBuilder& Builder)

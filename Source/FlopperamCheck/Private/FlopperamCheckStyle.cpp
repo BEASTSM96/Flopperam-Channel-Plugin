@@ -6,6 +6,7 @@
 #include "Styling/SlateStyleRegistry.h"
 #include "Slate/SlateGameResources.h"
 #include "Interfaces/IPluginManager.h"
+#include "Toolkits/AssetEditorManager.h"
 
 TSharedPtr< FSlateStyleSet > FFlopperamCheckStyle::StyleInstance = NULL;
 

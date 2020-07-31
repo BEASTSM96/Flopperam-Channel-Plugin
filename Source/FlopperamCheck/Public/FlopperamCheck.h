@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
+#include "ISettingsSection.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -20,6 +21,8 @@ public:
 	void PluginButtonClicked();
 	
 private:
+
+	ISettingsSectionPtr SettingsSection;
 
 	void AddToolbarExtension(FToolBarBuilder& Builder);
 	void AddMenuExtension(FMenuBuilder& Builder);
